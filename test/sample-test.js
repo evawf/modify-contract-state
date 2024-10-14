@@ -9,7 +9,7 @@ describe("TestModifyVariable", function () {
     const ModifyVariable = await ethers.getContractFactory("ModifyVariable");
 
     // we then use the ContractFactory object to deploy an instance of the contract
-    const contract = await ModifyVariable.deploy(10);
+    const contract = await ModifyVariable.deploy(10, "bonjour");
 
     // wait for contract to be deployed and validated!
     await contract.waitForDeployment();
@@ -18,6 +18,9 @@ describe("TestModifyVariable", function () {
     await contract.modifyToLeet();
     // getter for state variable x
     const newX = await contract.x();
+    const newS = await contract.y();
+
     assert.equal(Number(newX), 1337);
+    assert.equal(String(newS), "hello");
   });
 });
